@@ -21,7 +21,7 @@ class Layer:
 
 class Dense(Layer):
     def __init__(self, n_ins=0, n_outs=0, *, ap=np, w_sigma=0.1, w_mu=0, b_sigma=1, b_mu=0, act='none',
-                 weights=np.empty([]), biases=np.empty([]),
+                 weights=np.empty([0]), biases=np.empty([0]),
                  ):
 
         self.ap = ap
@@ -81,7 +81,7 @@ class Flatten(Layer):
 
 class Fully_Recurrent(Layer):
     def __init__(self, n_ins=0, n_outs=0, n_hid=0, *, ap=np, act='none', w_sigma=0.1, w_mu=0, b_sigma=1, b_mu=0,
-                 weights=np.empty([]), biases=np.empty([]),
+                 weights=np.empty([0]), biases=np.empty([0]),
                  ):
         self.ap = ap
 

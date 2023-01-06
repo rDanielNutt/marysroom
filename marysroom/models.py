@@ -28,6 +28,7 @@ class NN:
                 ap=self.ap, **layer['args']))
 
     def add_layer(self, layer, layer_ind=None):
+        layer.ap = self.ap
         if layer_ind:
             self.layers.insert(layer_ind, layer)
         else:

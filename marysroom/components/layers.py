@@ -41,9 +41,9 @@ class Dense(Layer):
     def set_optimizer(self, opt, lr, **opt_args):
         opt = opt.upper().replace(' ', '').replace('-', '').replace('_', '')
         self.w_opt = getattr(optimizers, opt.upper())(
-            params=self.w, lr=lr, **opt_args)
+            params=self.w, lr=lr, ap=self.ap, **opt_args)
         self.b_opt = getattr(optimizers, opt.upper())(
-            params=self.b, lr=lr, **opt_args)
+            params=self.b, lr=lr, ap=self.ap, **opt_args)
 
     def forward(self, X):
         self.x = X

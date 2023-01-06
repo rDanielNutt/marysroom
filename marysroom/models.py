@@ -1,8 +1,8 @@
 import numpy as np
 import pickle
 
-from marysroom.components import layers, loss_funcs
-from marysroom.mlfuncs import one_hot
+from components import layers, loss_funcs
+from mlfuncs import one_hot
 
 
 class NN:

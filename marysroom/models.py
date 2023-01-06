@@ -4,6 +4,8 @@ import pickle
 from marysroom.components import layers, loss_funcs
 from marysroom.mlfuncs import one_hot
 
+import os
+
 
 class NN:
     def __init__(self, ap=np):
@@ -66,8 +68,13 @@ class NN:
         return list(zip(xt_batches, yt_batches))
 
     def fit(self, X_train, y_train, *, lr, epochs=10, batch_size=1, display=False, onehot=False,
-            checkpoints=None, checkpoint_path='', checkpoint_file='',
+            checkpoints=None, checkpoint_path='', checkpoint_name='',
             loss='mse', opt='graddescent', **opt_args):
+
+        if checkpoints:
+            checkpoint_path = os.path.join(checkpoint_path, checkpoint_name)
+            if not os.path.exists(checkpoint_path):
+                os.mkdir(checkpoint_path)
 
         if onehot:
             y_train = one_hot(y_train, self.layers[-1].w.shape[1])
@@ -102,5 +109,4 @@ class NN:
                     f'Epoch {epoch:<{n_dig}}: loss[{self.loss_curve[-1]:^10.4E}]')
 
             if checkpoints and (epoch % checkpoints == 0):
-                self.save_net(path=checkpoint_path,
-                              filename=f'{checkpoint_file}/{epoch}')
+                self.save_net(path=checkpoint_path, filename=epoch)
